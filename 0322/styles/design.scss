@@ -1,0 +1,53 @@
+$mainColor:rgb(255, 121, 159);
+@mixin layout {
+    margin:0 auto;
+}
+$titleSize:3rem;
+$pSize:2rem;
+@mixin p_margin_top {
+    margin-top:30px;
+}
+
+
+
+
+body{
+    // background-color:rgb(249, 243, 201);
+    background-color:rgb(248,236,144);
+    padding-top:50px;
+    .main{
+        width:900px;
+        @include layout;
+        h1 {
+            // background-color: aqua;
+            color:$mainColor;
+            font-size:$titleSize;
+            text-align:center;
+            font-weight:700;
+            color:rgb(247, 91, 148);
+        }
+        p {
+            text-align:center; 
+            @include p_margin_top;
+            font-size:$pSize;
+            font-weight:700;
+            // background-color:rgb(254, 248, 52);
+        }
+        ul{
+            // background-color: rgb(248, 236, 144);
+            width:800px;
+            margin:20px auto 10px;
+            padding:10px 30px 30px;
+            li{
+                background-color:rgb(249, 243, 195);
+                border:2px solid rgb(247, 91, 148);
+                margin-top:10px;
+                padding:10px;
+                border-radius:20px;
+                font-size:1.5rem;
+                font-weight:700;
+                span{font-size:1.5rem; font-weight:700;}
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+body {
+  background-color: rgb(248, 236, 144);
+  padding-top: 50px;
+}
+body .main {
+  width: 900px;
+  margin: 0 auto;
+}
+body .main h1 {
+  color: rgb(255, 121, 159);
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 700;
+  color: rgb(247, 91, 148);
+}
+body .main p {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+body .main ul {
+  width: 800px;
+  margin: 20px auto 10px;
+  padding: 10px 30px 30px;
+}
+body .main ul li {
+  background-color: rgb(249, 243, 195);
+  border: 2px solid rgb(247, 91, 148);
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+body .main ul li span {
+  font-size: 1.5rem;
+  font-weight: 700;
+}/*# sourceMappingURL=design.css.map */

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-2</title>
+    <script>
+        // 1. var 1num=10; // x 숫자가 먼저 있어서 틀림
+        // 2. var $num=10; // o $ 먼저가 맞음 
+        // 3. var 100num=10; // x 숫자가 먼저 시작해서 안됨
+        // 4. var num100=10; // o 숫자가 뒤에 있어서 괜춘 중간도 괜춘 
+        // 5. var document=10; //  x 8,9번을 보면 document가 키워드여서 안되는 것임.
+        // 6. var num=10; //o  
+        // 7. var str="hello"; //o
+        // 8. var num=10; document.write(Num); // x (출력)
+        // 9. var num=10; document.write(num); // o
+        // var 1Num // o x
+        var box1 = 1 
+        var box1 = 2
+        console.log(box1)
+
+        let box2 = 3
+        box2 = 4
+        console.log(box2)
+
+        const box3 = 6
+        console.log(box3)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
