@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interior - 3</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <style>
+        body, html {scroll-behavior:smooth;}
+        header {background-color: pink; position:fixed; left:0; top:0; margin:50px;}
+        /* header > * {margin-left:50px;} */
+        header h1 {font-size:2rem; margin-bottom:20px; }
+        header nav a {padding:10px;}
+        header nav a:hover {border-bottom:2px solid #000; }
+        header nav a span {padding:10px;}
+        main {}
+        main .sec {height:90vh; background-size:cover; background-repeat:no-repeat;}
+        main .s1 {background-image: url(./images/bg1.jpg);}
+        main .s2 {background-image: url(./images/bg2.jpg);}
+        main .s3 {background-image: url(./images/bg3.jpg);}
+        main .s4 {background-image: url(./images/bg4.jpg);}
+        aside {position:fixed;}
+        aside .bar {
+            display:block; background:#000; width:20px; height:2px; margin:10px 50px;
+            position:relative; top:400px;
+        }
+        aside .bar_active {width:150px; background:#fff;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interior view</h1>
+        <nav>
+            <a href="#">A</a>
+            <a href="#">B</a>
+            <a href="#">C</a>
+            <a href="#">D</a>
+        </nav>
+    </header>
+    <aside>
+        <span class="bar" ></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </aside>
+    <main>
+        <section class="sec s1"></section>
+        <section class="sec s2"></section>
+        <section class="sec s3"></section>
+        <section class="sec s4"></section>
+    </main>
+    <script>
+
+    const nav = document.querySelectorAll('nav')
+    const section = document.querySelectorAll('main section')
+    const bar = document.querySelectorAll('aside span')
+    console.log(nav, section, bar)
+
+    for(let i of bar){i.style.transition ='all 0.3s'}
+    bar_reset(0)
+    window.addEventListener('scroll',()=>{
+        if(window.pageYOffset >= section[0].offsetTop){bar_reset(0)}
+        if(window.pageYOffset >= section[1].offsetTop-200){bar_reset(1)}
+        if(window.pageYOffset >= section[2].offsetTop-200){bar_reset(2)}
+        if(window.pageYOffset >= section[3].offsetTop-200){bar_reset(3)}
+    })
+
+    function bar_reset(num){
+        for(let i of bar){i.classList.remove('bar_active')}
+        bar[num].classList.add('bar_active')
+    }
+
+    nav.forEach((target,index)=>{
+        target.addEventListener('click',(e)=>{
+            e.preventDefault()
+            window.scrollTo(0,section[index].offsetTop)
+        })
+    })
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interior</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <style>
+        body, html {scroll-behavior:smooth;}
+        .bg {height:100vh;}
+        .bg1 {background-image: url(./images/bg1.jpg);}
+        .bg2 {background-image: url(./images/bg2.jpg);}
+        .bg3 {background-image: url(./images/bg3.jpg);}
+        .bg4 {background-image: url(./images/bg4.jpg);}
+        .btn {
+            display:flex; flex-flow:column wrap;
+            position:fixed; right:5%; top:45%;
+        }
+        .btn .interior {
+            background-color: #000; color:#fff; border-radius:30px; margin:7px 0; width:30px; height:30px;
+            transition: all 0.3s;
+            position:absolute; right:0;
+        }
+        .btn .interior:hover  {background-color: rgba(0,0,0,0.2); width:100px; text-align: center;}
+        .btn .interior::after {
+            position:absolute; 
+            line-height:30px; right:10px;
+            white-space:nowrap;
+            font-size:0.85rem;display:block;
+        }
+        .btn a:nth-child(1):hover::after {content:'Interior A.';}
+        .btn a:nth-child(2):hover::after {content:'Interior B.';}
+        .btn a:nth-child(3):hover::after {content:'Interior C.';}
+        .btn a:nth-child(4):hover::after {content:'Interior D.';}
+        .btn .a {position:absolute; right:0; top:0;}
+        .btn .b {position:absolute; right:0; top:40px;}
+        .btn .c {position:absolute; right:0; top:80px;}
+        .btn .d {position:absolute; right:0; top:120px;}
+
+    </style>
+</head>
+<body>
+    <div class="bg bg1"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="bg bg4"></div>
+    <div class="btn">
+        <a href="#" class="interior a"></a>
+        <a href="#" class="interior b"></a>
+        <a href="#" class="interior c"></a>
+        <a href="#" class="interior d"></a>
+        <!-- interior A. -->
+    </div>
+    <script>
+
+        // 버튼을 누르면 
+        // 원하는 스크롤 위치로 이동하도록 
+        
+        // 변수 
+        const bg = document.querySelectorAll('.bg')
+        const btn = document.querySelectorAll('.interior')
+        console.log(bg, btn)
+
+        //btn-interior 첫번째 클릭 -> bg 첫번째 이동
+        for(let i in btn){
+            console.log(btn[i].offsetTop)
+        }
+
+        // 이벤트
+        btn.forEach((t,index)=>{
+            console.log(t,index)
+            t.addEventListener('click',(e)=>{
+                e.preventDefault() // a태그로 사용했기때문에 스크롤 효과 주기 전에 필수로 주기
+                window.scrollTo(0,bg[index].offsetTop) // 지정된 위치로 스크롤 
+                //여기서 bg[index]는 클릭했을때 t와 동일한 인덱스를 가진 bg인덱스 위치로 이동하는 뜻
+                
+            })
+        })
+
+    </script>
+</body>
+</html>

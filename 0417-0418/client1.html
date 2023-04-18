@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client1</title>
+    <style>
+        body,html {
+            height:300vh;
+            background:linear-gradient(pink, beige, lightblue, lightgreen, plum);
+        }
+        #pst {padding:50px; position:relative; top:200px;}
+    </style>
+</head>
+<body>
+    <button type="button" id="pst">위치</button>
+    <script>
+
+        const pst = document.querySelector('#pst')
+        console.log(pst)
+
+        window.addEventListener('scroll',()=>{
+            console.log('----------------------')
+            // console.log(`offsetTop=>${pst.offsetTop}`)
+            // console.log(`client=>${pst.getBoundingClientRect().y}`) // 뷰포트를 기준으로 인식하는 높이 / 위치가 달라짐.
+            if(pst.getBoundingClientRect().top > 400){
+                pst.style.background = '#ff0'
+            }
+        })
+
+    </script>
+</body>
+</html>
