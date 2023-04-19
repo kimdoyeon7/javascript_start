@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>잘해보자</title>
+    <style>
+        * {font-family:'Noto Sans KR';box-sizing:border-box; margin:0; padding:0;}
+        main {overflow: hidden;}
+        main .scroll_wrap {
+            background-color: aquamarine;
+        }
+        main .scroll_wrap .height {
+            /* 스크롤 되는 실제 높이 값(vh) */
+            height:700vh;
+        }
+        main .scroll_wrap .height .sticky {
+            width:1000%; height:500vh;
+            background-image: url(./images/bg.jpg);
+            background-repeat:repeat-x;
+            background-size:cover;
+            background-attachment:fixed;
+            position:sticky; top:0;
+        }
+        main .scroll_wrap .height .sticky .container {
+            /* background-color: pink; */
+        }
+        main .scroll_wrap .height .sticky .container img {
+            width:500px;
+            position:relative; top:500px; left:0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="scroll_wrap"><!-- 전체를 묶음 -->
+            <div class="height"><!-- 스크롤 높이 -->
+                <div class="sticky"><!-- 고정대상 | 배경  -->
+                    <div class="container"><!-- 내용 삽입 위치  -->
+                        <img src="./images/dog.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const scroll_wrap = document.querySelector('.scroll_wrap')
+        // const scroll_container = document.querySelector('.scroll_wrap .container')
+        const img = document.querySelector('img')
+        console.log(scroll_wrap,/*  scroll_container */ img)
+
+        window.addEventListener('scroll',()=>{
+            // 전체 문서의 값과 
+            //전체 문서에서 내가 어디에 멈췄을 때 의 값을 알아야 함.
+            let window_hi = window.scrollY // 윈도우 전체 높이
+            console.log(`Yoffset=>${window_hi}`)
+            // 2. 강아지 기준으로는 얼마나 스크로 하고 있는가? 
+            console.log(`scroll_wrap 위치 => ${scroll_wrap.offsetTop}`)
+            console.log(`scrollWrap 기준 스크롤 값=>${window_hi - scroll_wrap.offsetTop}`)
+            let amount = window_hi - scroll_wrap.offsetTop // translate 에 넣을 변수
+            if(window_hi >= scroll_wrap.offsetTop){
+                img.style.transform = `translateX(${amount}px)`
+            }else {
+                img.style.transform = `translateX(0px)` 
+            }
+            // 전체 문서내에서의 스크롤 값, 내가 멈추고 싶은 대상의 스크롤 값을 알아야함. 
+
+            const bd = document.querySelector('html,body')
+
+            // bd.addEventListener('wheel',(e)=>{
+            //     //scrollLeft 수평 스크롤 바의 위치 속성 
+            //     // this.scrollLeft = 200 
+            //     //     bd.scrollLeft += 200
+            //         bd.scrollLeft += e.deltaY 
+            // })
+
+
+
+        })
+
+    </script>
+</body>
+</html>

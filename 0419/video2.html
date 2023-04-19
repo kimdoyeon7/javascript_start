@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습용 비디오2 </title>
+    <style>
+        * {box-sizing:border-box; margin:0; padding:0;}
+        body {height:700vh; overflow-x:hidden;}
+        .container {}
+        .container video {
+            width:100%;
+            position:fixed; left:0; top:0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <video src="./video/color.mp4" muted></video>
+    </div>
+
+    <script>
+
+        const video = document.querySelector('.container video')
+        console.log(video)
+
+        //동영상을 미리 로드 하는 함수
+        color()
+        function color(){
+            video.addEventListener('loadeddata',()=>{
+                //loadeddata 동영상의 프레임을 모두 로드 후 
+                console.log('동영상로드완료')
+                console.log(video.duration)
+                scroll_video()
+            })
+        }
+        // ------------------
+        function scroll_video (){//스크롤 제어 비디오 함수 생성
+            window.addEventListener('scroll',()=>{
+                //1 . 현재 스크롤 위치가 어디인가?
+                let progress = pageYOffset/(document.body.offsetHeight - window.innerHeight)
+                console.log(progress)
+
+                video.currentTime = video.duration * progress
+            })
+        }
+    </script>
+</body>
+</html>
