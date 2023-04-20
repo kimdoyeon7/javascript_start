@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머 4</title>
+    <style>
+        *{box-sizing: border-box; margin:0; padding:0;}
+        #slider_wrap {
+            border:3px solid #000;
+            width:700px; height:200px; 
+            overflow:hidden;
+        }
+        #slider_wrap #slider_container {
+            /* 부모가 안에서 요소들이 움직이는 것임 */
+            position:relative;
+        }
+        #slider_wrap #slider_container .slide {
+            line-height: 200px; width:700px; text-align:center; font-size:5rem;
+            position:absolute; left:0; top:0; transition:opacity 0.5s;
+            opacity:0;
+        }
+        #slider_wrap #slider_container .slide1 {background: aquamarine;}
+        #slider_wrap #slider_container .slide2 {background: pink;}
+        #slider_wrap #slider_container .slide3 {background: coral;}
+    </style>
+</head>
+<body>
+    
+    <div id="slider_wrap">
+        <div id="slider_container">
+            <div class="slide slide1">가나다</div>
+            <div class="slide slide2">라마바</div>
+            <div class="slide slide3">사아자</div>
+        </div>
+    </div>
+    <script>
+
+        const slide = document.querySelectorAll('.slide')
+        let num = 0
+        let timer = setInterval(slide_timer,1000)
+        slide[0].style.opacity = 1
+
+        function slide_timer(){
+            num++
+            if(num>2){
+                num=0
+                for(let i of slide){i.style.opacity = 0}
+            }
+            slide[num].style.opacity = 1
+        }
+        
+
+    </script>
+</body>
+</html>

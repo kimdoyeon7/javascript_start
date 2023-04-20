@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 따라 다니는 이벤트 3 </title>
+    <style>
+        /* body,html {cursor:none;} */
+        nav {background:#eee; display:flex; justify-content: center;}
+        nav a {line-height:100px; padding:0 20px;}
+        .circle {
+            /* 마우스 포인트보다 태그가 먼저 닿아서 이벤트 인식이 안될 경우 */
+            /* ==> 태그의 이벤트 해제하기 */
+            pointer-events:none;
+            width:30px; height:30px; border-radius:50%;
+            border:2px solid #222;
+            position:fixed; left:0; top:0;
+            transform:translate(-50%,-50%);
+            /* transition:all 0.2 ease; */
+        }
+        .circle_style{
+            /* background:#ccc;  */
+            border:2px solid #222; 
+            /* background-color: #222; border:2px solid #555; z-index:-1; */
+        }
+        /* .circle img {width:100%;} */
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#">menu1</a>
+        <a href="#">menu2</a>
+        <a href="#">menu3</a>
+        <a href="#">menu4</a>
+    </nav>
+    <div class="circle">
+        <!-- <img src="./images/cursor.png" alt=""> -->
+    </div>
+
+    <script>
+        const nav_a = document.querySelectorAll('nav a')
+        const circle = document.querySelector('.circle')
+        console.log(nav_a, circle)
+        
+        window.addEventListener('mousemove',(e)=>{
+            // 화면이 고정 = 화면에서! 움직이는 것이기 때문에 vh범위를 인식하는 fixed를 사용하기 
+            circle.style.left = `${e.clientX}px`
+            circle.style.top = `${e.clientY}px`
+            // if(nav_a == ){
+            //     circle.classList.add ('circle_style')
+            // }
+        })
+
+        for (let i of nav_a){
+            i.addEventListener('mouseover',()=>{
+                circle.classList.add ('circle_style')
+            })
+            i.addEventListener('mouseout',()=>{
+                circle.classList.remove ('circle_style')
+            })
+        }
+
+
+    </script>
+</body>
+</html>

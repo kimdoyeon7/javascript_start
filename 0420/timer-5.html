@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>새로고침 시 맨 위로 | 타이머 5</title>
+    <style>
+        *{box-sizing: border-box; margin:0; padding:0;}
+        body {
+            height:500vh;
+            background:linear-gradient(yellow,aqua,beige,pink)
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+
+        let num = 0
+        let timer = setTimeout(set,1000)
+        let timer2 = setTimeout(scroll,200)
+        
+        //스크롤을 맨 위로..? 
+        function scroll(){
+            window.scrollTo(0,0)
+        }
+
+        function set(){
+            num++
+            console.log(num)
+        }
+
+    </script>
+</body>
+</html>

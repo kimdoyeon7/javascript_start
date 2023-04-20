@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머 2</title>
+    <style>
+        *{box-sizing: border-box; margin:0; padding:0;}
+        #slider_wrap {
+            border:5px solid #000;
+            width:700px;
+            overflow:hidden;
+        }
+        #slider_wrap #slider_container {
+            display:flex; width:max-content;
+            transition:transform 0.5s;
+            /* transform:translateX(-0px);
+            transform:translateX(-700px);
+            transform:translateX(-1400px); */
+        }
+        #slider_wrap #slider_container .slide {
+            line-height: 200px; width:700px; text-align:center; font-size:5rem;
+        }
+        #slider_wrap #slider_container .slide1 {background: aquamarine;}
+        #slider_wrap #slider_container .slide2 {background: pink;}
+        #slider_wrap #slider_container .slide3 {background: coral;}
+    </style>
+</head>
+<body>
+    
+    <div id="slider_wrap">
+        <div id="slider_container">
+            <div class="slide slide1">1</div>
+            <div class="slide slide2">2</div>
+            <div class="slide slide3">3</div>
+        </div>
+    </div>
+    <script>
+
+        let num = 0
+        const slide = document.querySelector('#slider_container')
+        // console.log(slide)
+        //slide의 자식의 너비 
+        // console.log('---------------------')
+        // console.log(slide.firstElementChild.offsetWidth)//700
+        // console.log(slide.children[0].offsetWidth)//700
+        let slide_w = slide.firstElementChild.offsetWidth
+        // slide의 자식 요소 확인
+        console.log('---------------------')
+        console.log(slide.childElementCount) // 자식의 갯수
+        console.log(slide.children.length) // 자식의 갯수
+        let count = slide.children.length-1
+
+        setInterval(()=>{
+            //012012012012......
+            num++
+            if(num > count ){num=0} // 2이상이면 다시 0으로 되돌아가라
+            console.log('setInterval'+num)
+            slide.style.transform = `translateX(-${slide_w * num}px)`
+        },1000)
+
+    </script>
+</body>
+</html>

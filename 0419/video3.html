@@ -20,32 +20,66 @@
 <body>
     <div class="container">
         <img src="./images/video/1.jpg" alt="">
+        <!-- 이미지와 겹치는 대상 위치 -->
     </div>
+    <!-- 또는 이미지와 겹치는 대상 위치 | 이미지를 묶는 div와 형제로 놓기  -->
 
     <script>
+        // 마우스 스크롤 움직임에 따라 이미지 변화(동영상 이미지 변환)
         const imgElem = document.querySelector('.container img')
-        let totalImageCount = 282
-        let videoImages = []
+        let totalImageCount = 282 // 총 이미지 개수 생성 변수
+        let videoImages = [] // 빈 배열 생성 new Array()
         //1~282 이미지 생성
         setImages()
         init ()
         function setImages(){//1~282 이미지 생성 함수
             for(let i=1; i<=totalImageCount; i++){
-                let imgE = document.createElement('img')
+                let imgE = document.createElement('img') // 무조건 for문 안에 들어가 있어야 함.
+                //<img> 생성
                 imgE.src = `./images/video/${i}.jpg`
+                //<img src="./images/video/${i}.jpg"> 대입
                 console.log(imgE)
                 videoImages.push (imgE)
+                // 대입연산자로 지우기 전에 배열에 넣어두는 것
             }
         }
 
         function init(){//스크롤 동작 함수
             window.addEventListener('scroll',()=>{
                 let progress = pageYOffset / (document.body.offsetHeight - window.innerHeight)
-                // 전체에서 스크롤 되지 않는 window.innerHeight 를 전체 바디에서 뺸 나머지 값
-                console.log(progress)
-                let currentFrame = Math.round((totalImageCount-1) * progress)
+                // pageYOffset 문서에서 스크롤한 진행값 / ()
+                // document.body.offsetHeight 문서의 전체 높이,(어느 정도에서 스크롤 하느냐) 
+                // window.innerHeight 마지막 100vh 스크롤되지 않는 공간 빼기 
+                // -> document.body.offsetHeight - window.innerHeight
+                // pageYOffset / (위 계산식)
+
+                //스크롤 되는 공간(pageYOffset)에서 내가 스크롤을 얼마나 진행했는가? = document.body.offsetHeight 
+                // pageYOffset / document.body.offsetHeight 도 작동됨.
+                // 긴 바디의 높이 에서 얼마나 스크롤 했는지 체크, 마지막 window.innerHeight (100vh) 공간은 스크롤 되지 않음. 
+                // 마지막 한 공간은 스크롤에서 빠지는 공간 = window.innerHeight을 빼줌.
+                // 즉, 저 progress = 전체에서 스크롤 되지 않는 window.innerHeight 를 전체 바디에서 뺸 나머지 값
+                
+                // 문서의 전체 높이에서 window.innerHeight를 뺸 값 (pageYOffset)중에서 위에서 부터 스크롤을 얼만큼 내렸는지를 읽어주는
+                // 것이 progress임. 
+                // 그 값을 곱해서 반올림한 것이 currentFrame 
+                
+                // currentFrame = 이미지 숫자
+                let currentFrame = Math.round((totalImageCount-1) * progress) // 이미지 순서 (ex.0.232356898)
+                // 실제 이미지 갯수랑 곱해야 함. 
+                // 왜 곱하냐 ? 전체 이미지 수 에서 내가 얼마나 스크롤 했는지를 곱해서 반올림 한 값 = currentFrame
+
                 // console.log(`progress>>${progress},currentFrame>>${currentFrame}`)
+                //스크롤 진행값과 이미지의 개수를 곱해서 반올림 후 변수 대입
+                //반올림 진행 시 이미지 개수+1 이 되므로 totalImageCount-1 처리
+                //Math.round 는 반올림/ 반올림하면 값이 1높기 때문에 -1한 후에 반올림해라 라는 의미
+
+                //imgElem.src == <img src="" alt="">
+                //imgElem.src == <img src="<img src="">" alt=""> // 배열 뒤의 src 생략할 경우
+                //imgElem.src == <img src="./images/video/${i}.jpg" alt="">
                 imgElem.src = videoImages[currentFrame].src
+                // 위 변수가 이미지 태그 변수인데, 대입연산자를 이용해서 밖꾸겠따 라는 의미
+                // src 주소를 비워놓고 가져와서 
+                // 해당 배열에 올바른 번호의 이미지의 src값만 가져온다
             })
         }
 
